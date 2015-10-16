@@ -1,33 +1,31 @@
 package controller;
 
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Board;
 import model.BoardImpl;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by maxime on 10/16/15.
  */
-public class GameController extends Controller {
+public class GameController implements Initializable {
 
-    private Stage gameStage;
-    private Parent gameView;
     private Board boardModel;
 
-    public GameController(Parent gameView, Stage gameStage) throws IOException {
-        this.gameView = gameView;
-        this.gameStage = gameStage;
-        initView();
+    @FXML
+    private GridPane grid;
 
+    public void initialize(URL location, ResourceBundle resources) {
         boardModel = new BoardImpl(10);
+        grid.getChildren().add(0,new Label("test"));
     }
-
-    protected void initView() throws IOException{
-
-    }
-
 }
