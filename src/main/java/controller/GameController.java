@@ -19,13 +19,15 @@ import java.util.ResourceBundle;
  */
 public class GameController implements Initializable {
 
+    final static int BOARD_SIDE_SIZE = 8;
+
     private Board boardModel;
 
     @FXML
     private GridPane grid;
 
     public void initialize(URL location, ResourceBundle resources) {
-        boardModel = new BoardImpl(10);
+        boardModel = new BoardImpl(BOARD_SIDE_SIZE);
         grid.getChildren().add(0,new Label("test"));
     }
 }
