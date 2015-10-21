@@ -1,18 +1,23 @@
 package controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ListBinding;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import model.Board;
 import model.BoardImpl;
 import model.Tile;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 /**
@@ -20,28 +25,41 @@ import java.util.ResourceBundle;
  */
 public class GameController implements Initializable {
 
+    final static int BOARD_SIDE_SIZE = 4;
+
     private Board boardModel;
 
     @FXML
     private GridPane grid;
 
     public void initialize(URL location, ResourceBundle resources) {
-        boardModel = new BoardImpl(10);
-        grid.setGridLinesVisible(true);
-        for(int i=1;i<=10;i++){
-            for(int j=1;j<=10;j++) {
-                Tile t = boardModel.getTile(i,j);
 
-                if(t!=null){
-                    System.out.println("pas null value i=" +i +" j="+j);
-                    String value = String.valueOf(t.getRank());
+        boardModel = new BoardImpl(BOARD_SIDE_SIZE);
+        update();
+    }
 
-                    grid.add(new Label(value), i - 1, j - 1);
-                }else{
-                    grid.add(new Label(String.valueOf(i)), i - 1, j - 1);
-                    System.out.println("null value i=" +i +" j="+j);
-                }
-            }
+    private void update(){
+
+    }
+
+
+
+    public void handleKeyPressed(KeyCode code) {
+        switch (code) {
+            case DOWN:
+                boardModel.packIntoDirection(Board.Direction.BOTTOM);
+                break;
+            case UP:
+                boardModel.packIntoDirection(Board.Direction.TOP);
+                break;
+            case LEFT:
+                boardModel.packIntoDirection(Board.Direction.LEFT);
+                break;
+            case RIGHT:
+                boardModel.packIntoDirection(Board.Direction.RIGHT);
+                break;
         }
+        boardModel.commit();
+        update();
     }
 }

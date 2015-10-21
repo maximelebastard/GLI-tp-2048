@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Random;
 import java.util.logging.Logger;
 
 /**
@@ -18,6 +19,20 @@ public class BoardImpl implements Board {
         this.sideSizeInSquares = sideSizeInSquares;
         currentBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
         nextBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
+        addTile();
+        addTile();
+    }
+
+    private void addTile(){
+        Random random = new Random();
+        int x = random.nextInt(sideSizeInSquares);
+        int y = random.nextInt(sideSizeInSquares);
+
+        while(getTile(y,x) != null){
+            x = random.nextInt(sideSizeInSquares);
+            y = random.nextInt(sideSizeInSquares);
+        }
+        currentBoard[x][y] = new TileImpl(1);
     }
 
     @Override
@@ -63,6 +78,7 @@ public class BoardImpl implements Board {
     public void commit() {
 
         currentBoard = nextBoard;
+        addTile();
         nextBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
     }
 
