@@ -25,13 +25,13 @@ public class BoardImpl implements Board {
 
     private void addTile(){
         Random random = new Random();
-        int x = random.nextInt(sideSizeInSquares);
-        int y = random.nextInt(sideSizeInSquares);
-
-        while(getTile(y,x) != null){
-            x = random.nextInt(sideSizeInSquares);
-            y = random.nextInt(sideSizeInSquares);
-        }
+        int x;
+        int y;
+        //tant qu'il y a une tile à l'endroit généré on n'en génère une autre
+        do{
+            x = random.nextInt(sideSizeInSquares-1)+1;
+            y = random.nextInt(sideSizeInSquares-1)+1;
+        }while(getTile(x,y) != null);
         currentBoard[x][y] = new TileImpl(1);
     }
 
