@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,6 +30,8 @@ public class GameController implements Initializable {
 
     private Board boardModel;
 
+    private Label[][] label = new Label[4][4];
+
     @FXML
     private GridPane grid;
 
@@ -39,7 +42,6 @@ public class GameController implements Initializable {
     }
 
     private void update(){
-
     }
 
 

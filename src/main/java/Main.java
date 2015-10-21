@@ -27,6 +27,7 @@ public class Main extends Application {
                 controller.handleKeyPressed(event.getCode());
             }
         });
+        root.getStylesheets().add("/resources/My512.css");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
