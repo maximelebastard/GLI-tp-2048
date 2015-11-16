@@ -4,3 +4,46 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
+
+.rank1{
+    -fx-text-fill:yellow;
+}
+.rank2{
+    -fx-text-fill:orange;
+}
+
+.rank3{
+    -fx-text-fill:green;
+}
+
+.rank4{
+    -fx-text-fill:purple;
+}
+
+.rank5{
+    -fx-text-fill:darkcyan;
+}
+
+.rank6{
+    -fx-text-fill:salmon;
+}
+
+.rank7{
+    -fx-text-fill:mediumvioletred;
+}
+
+.rank8{
+    -fx-text-fill:deepskyblue;
+}
+
+.rank9{
+    -fx-text-fill:olivedrab;
+}
+
+.rank10{
+    -fx-text-fill:lightcoral;
+}
+
+.rank11{
+    -fx-text-fill:lawngreen;
+}

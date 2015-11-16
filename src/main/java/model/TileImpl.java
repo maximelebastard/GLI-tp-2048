@@ -23,9 +23,8 @@ public class TileImpl implements Tile  {
         return rank;
     }
 
-    public SimpleStringProperty getValue() {
-        simpleStringProperty.set(String.valueOf(Math.pow(2, rank)));
-        return simpleStringProperty;
+    public String getValue() {
+       return String.valueOf((int)Math.pow(2, rank));
     }
 
     @Override

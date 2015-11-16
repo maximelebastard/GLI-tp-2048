@@ -10,6 +10,6 @@ import javafx.beans.property.SimpleStringProperty;
 public interface Tile {
 
     int getRank();
-    SimpleStringProperty getValue();
+    String getValue();
     void incrementRank();
 }

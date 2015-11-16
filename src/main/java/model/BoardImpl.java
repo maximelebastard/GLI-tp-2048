@@ -1,5 +1,8 @@
 package model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -11,6 +14,8 @@ public class BoardImpl implements Board {
 
     private final int sideSizeInSquares;
     private Direction directionToPackInto;
+    private boolean won;
+    private boolean loosed;
 
     public BoardImpl(int sideSizeInSquares) {
         if (sideSizeInSquares <= 1) {
@@ -23,16 +28,36 @@ public class BoardImpl implements Board {
         addTile();
     }
 
+    /**
+     * We add a new random tile to the board
+     */
     private void addTile(){
         Random random = new Random();
         int x;
         int y;
-        //tant qu'il y a une tile à l'endroit généré on n'en génère une autre
+        if(won || loosed || !canAddTile())
+            return;
+        //if a tile exist already, we retry a new random
         do{
-            x = random.nextInt(sideSizeInSquares-1)+1;
-            y = random.nextInt(sideSizeInSquares-1)+1;
+            x = random.nextInt(sideSizeInSquares)+1;
+            y = random.nextInt(sideSizeInSquares)+1;
         }while(getTile(x,y) != null);
-        currentBoard[x][y] = new TileImpl(1);
+        currentBoard[x-1][y-1] = new TileImpl(1);
+    }
+
+    /**
+     * If a tile can be added to the board
+     */
+    private boolean canAddTile(){
+        for (int i = 1; i <= sideSizeInSquares; i++) {
+            for (int j = 1; j <= sideSizeInSquares; j++) {
+                if(getTile(i,j) == null)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -79,7 +104,86 @@ public class BoardImpl implements Board {
 
         currentBoard = nextBoard;
         addTile();
+        verifyWin();
+        verifyLoosed();
         nextBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
+    }
+
+
+    /**
+     * verification if the game is won
+     */
+    private void verifyWin(){
+        for(int i=0;i<sideSizeInSquares;i++){
+            for(int j=0;j<sideSizeInSquares;j++){
+
+                Tile tile = getTile(i+1,j+1);
+                if(tile != null && getTile(i+1,j+1).getRank() ==11)
+                {
+                    System.out.println("Vous avez gagné");
+                    won=true;
+                }
+            }
+        }
+    }
+
+    /**
+     * if we can do some movements.
+     */
+    private void verifyLoosed(){
+        for(int i=0;i<sideSizeInSquares;i++){
+            for(int j=0;j<sideSizeInSquares;j++){
+                Tile nextLine=null;
+                Tile beforeLine=null;
+                Tile nextRow=null;
+                Tile beforeRow=null;
+                Tile current = getTile(i+1,j+1);
+                List<Tile> neighbours = new ArrayList<Tile>();
+
+                if(i<sideSizeInSquares-1){
+                    nextLine= getTile(i+2,j+1);
+                    neighbours.add(nextLine);
+                }
+                if(i>0){
+                    beforeLine = getTile(i,j+1);
+                    neighbours.add(beforeLine);
+                }
+
+                if(j<sideSizeInSquares-1){
+                    nextRow= getTile(i+1,j+2);
+                    neighbours.add(nextRow);
+                }
+                if(j>0){
+                    beforeRow = getTile(i+1,j);
+                    neighbours.add(beforeRow);
+                }
+                // if we have a solution for the current tile, we stop this function
+                if(!(current != null && isLoosedForCurrentTile(neighbours,current)))
+                {
+                    return;
+                }
+            }
+        }
+        System.out.println("Vous avez perdu");
+        loosed=true;
+    }
+
+    /**
+     * Function which indicate if we have a solution for the current tile
+     * @param neighbours :set of neightbours of the current tile
+     * @param current : current tile
+     * @return return true if we have a solution,else return false
+     */
+    private boolean isLoosedForCurrentTile(List<Tile> neighbours,Tile current){
+        for(Tile tile : neighbours) {
+           if(tile==null){
+               return false;
+           }
+            if(tile.getRank() == current.getRank()){
+                return false;
+            }
+        }
+        return true;
     }
 
 

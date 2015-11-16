@@ -77,69 +77,168 @@ public class GameController implements Initializable {
 
     }
 
+    private String classForTile(Tile current){
+        switch(current.getRank()){
+            case 1 : return "rank1";
+            case 2 : return "rank2";
+            case 3 : return "rank3";
+            case 4 : return "rank4";
+            case 5 : return "rank5";
+            case 6 : return "rank6";
+            case 7 : return "rank7";
+            case 8 : return "rank8";
+            case 9 : return "rank9";
+            case 10 : return "rank10";
+            case 11 : return "rank11";
+        }
+        return "";
+    }
+
     private void update(){
-        if(boardModel.getTile(1,1) != null && !cell00.textProperty().isBound()) {
-            cell00.textProperty().bindBidirectional(boardModel.getTile(1, 1).getValue());
+
+        Tile current = boardModel.getTile(1,1);
+        cell00.getStyleClass().clear();
+        if(current != null) {
+            cell00.setText(current.getValue());
+            cell00.getStyleClass().add(classForTile(current));
+        }else{
+            cell00.setText("");
         }
 
-        if(boardModel.getTile(1,2) != null && !cell01.textProperty().isBound()) {
-            cell01.textProperty().bindBidirectional(boardModel.getTile(1, 2).getValue());
+        current = boardModel.getTile(2,1);
+        cell01.getStyleClass().clear();
+        if(current != null) {
+            cell01.setText(current.getValue());
+            cell01.getStyleClass().add(classForTile(current));
+        }else{
+            cell01.setText("");
         }
 
-        if(boardModel.getTile(1,3) != null && !cell02.textProperty().isBound()) {
-            cell02.textProperty().bindBidirectional(boardModel.getTile(1, 3).getValue());
+        current =boardModel.getTile(3,1);
+        cell02.getStyleClass().clear();
+        if(current != null) {
+            cell02.setText(current.getValue());
+            cell02.getStyleClass().add(classForTile(current));
+        }else{
+            cell02.setText("");
+        }
+        current=boardModel.getTile(4,1);
+        cell03.getStyleClass().clear();
+        if(current != null) {
+            cell03.setText(current.getValue());
+            cell03.getStyleClass().add(classForTile(current));
+        }else{
+            cell03.setText("");
         }
 
-        if(boardModel.getTile(1,4) != null && !cell03.textProperty().isBound()) {
-            cell03.textProperty().bindBidirectional(boardModel.getTile(1, 4).getValue());
+        current=boardModel.getTile(1,2);
+        cell10.getStyleClass().clear();
+        if(current != null) {
+            cell10.setText(current.getValue());
+            cell10.getStyleClass().add(classForTile(current));
+        }else{
+            cell10.setText("");
         }
 
-        if(boardModel.getTile(2,1) != null && !cell10.textProperty().isBound()) {
-            cell10.textProperty().bindBidirectional(boardModel.getTile(2, 1).getValue());
+        current=boardModel.getTile(2,2);
+        cell11.getStyleClass().clear();
+        if(current != null) {
+            cell11.setText(boardModel.getTile(2, 2).getValue());
+            cell11.getStyleClass().add(classForTile(current));
+        }else{
+            cell11.setText("");
         }
 
-        if(boardModel.getTile(2,2) != null && !cell11.textProperty().isBound()) {
-            cell11.textProperty().bindBidirectional(boardModel.getTile(2, 2).getValue());
+        current = boardModel.getTile(3,2);
+        cell12.getStyleClass().clear();
+        if(current != null) {
+            cell12.setText(current.getValue());
+            cell12.getStyleClass().add(classForTile(current));
+        }else{
+            cell12.setText("");
         }
 
-        if(boardModel.getTile(2,3) != null && !cell12.textProperty().isBound()) {
-            cell12.textProperty().bindBidirectional(boardModel.getTile(2, 3).getValue());
+        current = boardModel.getTile(4,2);
+        cell13.getStyleClass().clear();
+        if(current != null) {
+            cell13.setText(current.getValue());
+            cell13.getStyleClass().add(classForTile(current));
+        }else{
+            cell13.setText("");
         }
 
-        if(boardModel.getTile(2,4) != null && !cell13.textProperty().isBound()) {
-            cell13.textProperty().bindBidirectional(boardModel.getTile(2, 4).getValue());
+        current = boardModel.getTile(1,3);
+        cell20.getStyleClass().clear();
+        if(current != null) {
+            cell20.setText(current.getValue());
+            cell20.getStyleClass().add(classForTile(current));
+        }else{
+            cell20.setText("");
         }
 
-        if(boardModel.getTile(3,1) != null && !cell20.textProperty().isBound()) {
-            cell20.textProperty().bindBidirectional(boardModel.getTile(3, 1).getValue());
+        current= boardModel.getTile(2,3);
+        cell21.getStyleClass().clear();
+        if(current != null ) {
+            cell21.setText(current.getValue());
+            cell21.getStyleClass().add(classForTile(current));
+        }else{
+            cell21.setText("");
         }
 
-        if(boardModel.getTile(3,2) != null && !cell21.textProperty().isBound()) {
-            cell21.textProperty().bindBidirectional(boardModel.getTile(3, 2).getValue());
+        current = boardModel.getTile(3,3);
+        cell22.getStyleClass().clear();
+        if(current != null) {
+            cell22.setText(current.getValue());
+            cell22.getStyleClass().add(classForTile(current));
+        }else{
+            cell22.setText("");
         }
 
-        if(boardModel.getTile(3,3) != null && !cell22.textProperty().isBound()) {
-            cell22.textProperty().bindBidirectional(boardModel.getTile(3, 3).getValue());
+        current = boardModel.getTile(4,3);
+        cell23.getStyleClass().clear();
+        if(current != null) {
+            cell23.setText(current.getValue());
+            cell23.getStyleClass().add(classForTile(current));
+
+        }else{
+            cell23.setText("");
         }
 
-        if(boardModel.getTile(3,4) != null && !cell23.textProperty().isBound()) {
-            cell23.textProperty().bindBidirectional(boardModel.getTile(3, 4).getValue());
+        current = boardModel.getTile(1,4);
+        cell30.getStyleClass().clear();
+        if(current != null ) {
+            cell30.setText(current.getValue());
+            cell30.getStyleClass().add(classForTile(current));
+        }else{
+            cell30.setText("");
         }
 
-        if(boardModel.getTile(4,1) != null && !cell30.textProperty().isBound()) {
-            cell30.textProperty().bindBidirectional(boardModel.getTile(4, 1).getValue());
+        current = boardModel.getTile(2,4);
+        cell31.getStyleClass().clear();
+        if(current != null) {
+            cell31.setText(current.getValue());
+            cell31.getStyleClass().add(classForTile(current));
+        }else{
+            cell31.setText("");
         }
 
-        if(boardModel.getTile(4,2) != null && !cell31.textProperty().isBound()) {
-            cell31.textProperty().bindBidirectional(boardModel.getTile(4, 2).getValue());
+        current = boardModel.getTile(3,4);
+        cell32.getStyleClass().clear();
+        if(current != null) {
+            cell32.setText(current.getValue());
+            cell32.getStyleClass().add(classForTile(current));
+        }else{
+            cell32.setText("");
         }
 
-        if(boardModel.getTile(4,3) != null && !cell32.textProperty().isBound()) {
-            cell32.textProperty().bindBidirectional(boardModel.getTile(4, 3).getValue());
+        current = boardModel.getTile(4,4);
+        cell33.getStyleClass().clear();
+        if(current != null) {
+            cell33.setText(current.getValue());
+            cell33.getStyleClass().add(classForTile(current));
         }
-
-        if(boardModel.getTile(4,4) != null && !cell33.textProperty().isBound()) {
-            cell33.textProperty().bindBidirectional(boardModel.getTile(4, 4).getValue());
+        else{
+            cell33.setText("");
         }
     }
 
